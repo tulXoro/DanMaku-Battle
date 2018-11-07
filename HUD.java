@@ -31,11 +31,10 @@ public class HUD {
 		g.setColor(Color.white);
 		g.drawRect(15, 15, 200, 16);
 		
-		g.setColor(Color.black);
+		g.setColor(Color.orange);
 		g.drawString("Wave: " + wave, 15, 45);
 		g.drawString("Score: " + score, 15, 60);
 		g.drawString("Time Left: " + timer, 15, 75);
-
 	}
 	
 	public void score(int score) {

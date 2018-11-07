@@ -18,7 +18,7 @@ public class Spawn {
 	public void tick() {
 		scoreKeep++;
 		
-		if(scoreKeep >= 100) {
+		if(scoreKeep >= 1000) {
 			scoreKeep = 0;
 			hud.setWave(hud.getWave() + 1);
 			

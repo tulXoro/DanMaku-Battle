@@ -38,12 +38,14 @@ public class Player extends GameObject{
 			if(tempObject.getId() == ID.BasicEnemy) {
 				if(getHitBox().intersects(tempObject.getHitBox())) {
 					HUD.HEALTH-=10;
+					handler.removeObject(tempObject);
 				}
 			}
 			
 			if(tempObject.getId() == ID.FastEnemy) {
 				if(getHitBox().intersects(tempObject.getHitBox())) {
 					HUD.HEALTH-=5;
+					handler.removeObject(tempObject);
 				}
 			}
 			
