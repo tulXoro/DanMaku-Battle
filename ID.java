@@ -2,5 +2,9 @@ package gameT;
 
 public enum ID {
 	Player(),
-	BasicEnemy();
+	BasicEnemy(),
+	UnblockableEnemy(),
+	FastEnemy(),
+	ImmortalEnemy(),
+	Boss();
 }

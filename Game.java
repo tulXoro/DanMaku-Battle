@@ -19,6 +19,7 @@ public class Game extends Canvas implements Runnable{
 	private Random r;
 	private Handler handler;
 	private HUD hud;
+	private Spawn spawner;
 	
 	public Game(){
 		handler = new Handler();
@@ -27,10 +28,13 @@ public class Game extends Canvas implements Runnable{
 		new Window(WIDTH,HEIGHT,title,this);
 		
 		hud = new HUD();
+		spawner = new Spawn(handler, hud);
+		
 		
 		r = new Random();
 		handler.addObject(new Player(WIDTH/2 -32, HEIGHT/2 -32, ID.Player, handler));
-		handler.addObject(new BasicEnemy(WIDTH/2 -32, HEIGHT/2 -32, ID.BasicEnemy));
+		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy));
+
 	}
 	
 	public synchronized void start(){
@@ -46,8 +50,7 @@ public class Game extends Canvas implements Runnable{
 			thread.join();
 		}catch(InterruptedException e){
 			e.printStackTrace();
-		}
-		isRunning = false;
+		}isRunning = false;
 	}
 	
 	public void run(){
@@ -80,6 +83,7 @@ public class Game extends Canvas implements Runnable{
 	private void tick(){
 		handler.tick();
 		hud.tick();
+		spawner.tick();
 	}
 	
 	private void render(){
@@ -109,7 +113,7 @@ public class Game extends Canvas implements Runnable{
 	public static int clamp(int var, int min, int max) {
 		if(var >= max) return max;
 		else if(var <= min) return min;
-		else return var;
+		return var;
 	}
 	
 	public static void main(String[] args) {
