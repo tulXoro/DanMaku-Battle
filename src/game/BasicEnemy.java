@@ -35,7 +35,7 @@ public class BasicEnemy extends GameObject implements EnemyS{
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(sprite, x, y, null);
+		g.drawImage(sprite, x, y, 45, 45,null);
 	}
 
 	public Rectangle getHitBox() {
