@@ -1,6 +1,8 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class BasicEnemy extends GameObject implements EnemyS{
@@ -34,12 +36,17 @@ public class BasicEnemy extends GameObject implements EnemyS{
 		y = Game.clamp(y, -5, Game.HEIGHT - 53);
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics g) {		
+		Graphics2D g2d = (Graphics2D) g;
+		
 		g.drawImage(sprite, x, y, 45, 45,null);
+		
+		g.setColor(Color.green);
+		g2d.draw(getHitBox());
 	}
 
 	public Rectangle getHitBox() {
-		return null;
+		return new Rectangle (x+4, y+2, 34, 37);
 	}
 	
 }

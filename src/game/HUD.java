@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class HUD {
-	public int HP = 100;
+	private int HP = 100;
 	
 	private int greenValue = 255;
 	private int wave = 1;
@@ -22,6 +22,7 @@ public class HUD {
 			wave++;
 			timer = 6100;
 		}
+		
 	}
 	
 	public void render(Graphics g) {

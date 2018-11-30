@@ -120,6 +120,10 @@ public class Game extends Canvas implements Runnable{
 		bEne.render(g);
 		hud.render(g);
 		
+		if(p.getHitBox().intersects(bEne.getHitBox())) {
+			hud.setHealth(hud.getHP()-1);
+		}
+		
 		g.dispose();
 		bs.show();
 	}
