@@ -7,15 +7,13 @@ import java.awt.Rectangle;
 
 public class TankEnemy extends EnemyB{
 	
-	public TankEnemy(int x, int y, Game game) {
-		super(x, y, game);
+	public TankEnemy(int x, int y, int damage, int eneHP, Game game) {
+		super(x, y, damage, eneHP, game);
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(4, 1, 32, 32);
-		damage = 10;
 		id = EnemyID.TankEnemy;
-		EneHP = 3;
 	}
 
 
