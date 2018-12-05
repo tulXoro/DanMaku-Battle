@@ -38,13 +38,16 @@ public class Player extends GameObject{
 				EnemyB temp = h.list.get(i);
 				if(getHitBox().intersects(temp.getHitBox())) {
 					HUD.HP -= temp.getDamage();
-					if(h.list.get(i).getID() != EnemyID.TankEnemy) h.list.remove(i);
+					if(temp.isBrittle()) temp.setEneHP(temp.getEneHP()-1);
 				}
 			};
 		}else if(isDashing) {
 			for(int i = 0; i<h.list.size(); i++) {
 				GameObject temp = h.list.get(i);
-				if(getHitBox().intersects(temp.getHitBox())) h.list.remove(i);
+				if(getHitBox().intersects(temp.getHitBox())) {
+					if(temp.isBrittle) temp.setEneHP(temp.getEneHP()-2);
+					else temp.setEneHP(temp.getEneHP()-1);
+				}
 			};
 			
 			dashCntDown-=1;
