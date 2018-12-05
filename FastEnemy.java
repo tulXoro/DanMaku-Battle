@@ -7,16 +7,14 @@ import java.awt.Rectangle;
 
 public class FastEnemy extends EnemyB{
 	
-	public FastEnemy(int x, int y, Game game) {
-		super(x, y, game);
+	public FastEnemy(int x, int y, int damage, int eneHP, Game game) {
+		super(x, y, damage, eneHP, game);
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(3, 1, 32, 32);
-		damage = 5;
 		id = EnemyID.FastEnemy;
 	}
-
 
 	public void tick() {
 		x += velX;
