@@ -14,34 +14,38 @@ public class Game extends Canvas implements Runnable{
 
 	public static final int WIDTH = 640, HEIGHT = WIDTH/12 * 9; //used for pop out window
 	
+	//game background
 	private Thread thread;
 	private boolean isRunning = false;
-	private String title = "DanMakuBlock";
+	private String title = "DanMakuBlock"; 
 	
+	//sprites
 	private BufferedImage spriteSheet;
 	
+	//gameobjects
 	private Player p;
-	private BasicEnemy bEne;
+	private Handler h;
 	private HUD hud;
 	
 	//FOR MOVEMENT
 	private boolean overWriteX = false, overWriteY = false;
 	
-	public void init() {
+	//initializes when game starts
+	public void init() throws IOException{
 		BufferedImageLoader loader = new BufferedImageLoader();
-		try {
-			
-			spriteSheet = loader.loadImage("res/spriteSheet.png");
-			
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
 		
+		spriteSheet = loader.loadImage("res/spriteSheet.png");//throws exception if directory not found
+		
+		//key listener for key input
 		addKeyListener(new KeyInput(this));
 		
+		//inits game objects
+		h = new Handler();
 		hud = new HUD();
-		p = new Player(200, 200, this, hud);
-		bEne = new BasicEnemy(300, 300, this, hud);
+		p = new Player(200, 200, this, h);
+		h.addEnemy(new BasicEnemy(300, 300, this)); 
+		h.addEnemy(new FastEnemy(200, 100, this));
+		h.addEnemy(new TankEnemy(300, 100, this));
 	}
 	
 	
@@ -69,7 +73,12 @@ public class Game extends Canvas implements Runnable{
 	
 	//GAMELOOP
 	public void run(){
-		init();
+		//when directory not found
+		try {
+			init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	    this.requestFocus();
 	    long lastTime = System.nanoTime();
 	    double amountOfTicks = 60.0;
@@ -91,7 +100,6 @@ public class Game extends Canvas implements Runnable{
 	    		timer += 1000;
 	    		System.out.println("FPS: " + frames);
 	    		frames = 0;
-	    		System.out.println(p.isDashing());
 		    }
 	    }
 		stop();
@@ -99,7 +107,7 @@ public class Game extends Canvas implements Runnable{
 	
 	private void tick(){
 		p.tick();
-		bEne.tick();
+		h.tick();
 		hud.tick();
 	}
 	
@@ -117,12 +125,8 @@ public class Game extends Canvas implements Runnable{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		p.render(g);
-		bEne.render(g);
+		h.render(g);
 		hud.render(g);
-		
-		if(p.getHitBox().intersects(bEne.getHitBox())) {
-			hud.setHealth(hud.getHP()-1);
-		}
 		
 		g.dispose();
 		bs.show();
@@ -151,7 +155,7 @@ public class Game extends Canvas implements Runnable{
 		
 		//DEBUG COMMANDS
 		if(key == KeyEvent.VK_H) {
-			p.takeDamage(10);
+			HUD.HP -=12;
 		}
 		
 		//DASH

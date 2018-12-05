@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class HUD {
-	private int HP = 100;
+	static int HP = 100;
 	
 	private int greenValue = 255;
-	private int wave = 1;
 	private int timer = 6100;
 	
 	public void tick() {
@@ -18,10 +17,6 @@ public class HUD {
 		greenValue = HP*2;
 		
 		if(timer > 0) timer-=2;
-		else {
-			wave++;
-			timer = 6100;
-		}
 		
 	}
 	
@@ -34,15 +29,10 @@ public class HUD {
 		g.drawRect(15, 15, 200, 16);
 		
 		//g.setColor(Color.orange);
-		g.drawString("Wave: " + wave, 15, 45);
-		g.drawString("Time Left: " + timer/100, 15, 60);
+		g.drawString("Time Left: " + timer/100, 15, 45);
 	}
 	
 	public int getHP() {
 		return HP;
-	}
-	
-	public void setHealth(int HP) {
-		this.HP = HP;
 	}
 }
