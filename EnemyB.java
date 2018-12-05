@@ -1,7 +1,7 @@
 package game;
 
 public abstract class EnemyB extends GameObject{
-	protected boolean brittle = false;
+	protected boolean brittle = true;
 	protected int damage;
 	protected int eneHP;
 	protected EnemyID id;
