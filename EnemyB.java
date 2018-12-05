@@ -1,15 +1,14 @@
 package game;
 
 public abstract class EnemyB extends GameObject{
-	
-	//TODO determine whether something is tank w/ bool
 	protected int damage;
-	protected EnemyID id;
 	protected int EneHP=1;
+	protected EnemyID id;
 	
-	public EnemyB(int x, int y, Game game) {
+	public EnemyB(int x, int y, int damage, int EneHP, Game game) {
 		super(x, y, game);
 	}
+	
 	public int getDamage() {
 		return damage;
 	}
