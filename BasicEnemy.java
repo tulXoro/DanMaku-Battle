@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 
 public class BasicEnemy extends EnemyB{
 	
-	public BasicEnemy(int x, int y, Game game) {
-		super(x, y, game);
+	public BasicEnemy(int x, int y, int damage, int eneHP, Game game) {
+		super(x, y, damage, eneHP, game);
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
