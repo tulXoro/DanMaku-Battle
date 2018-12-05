@@ -31,4 +31,13 @@ public abstract class EnemyB extends GameObject{
 	public void setEneHP(int EneHP) {
 		this.EneHP = 0;
 	}
+	
+	public boolean isBrittle(){
+		return brittle;
+	}
+	
+	public void setBrittle(boolean brittle){
+		this.brittle = brittle;
+	}
+
 }
