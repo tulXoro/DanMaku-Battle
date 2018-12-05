@@ -2,10 +2,10 @@ package game;
 
 public abstract class EnemyB extends GameObject{
 	protected int damage;
-	protected int EneHP=1;
+	protected int eneHP=1;
 	protected EnemyID id;
 	
-	public EnemyB(int x, int y, int damage, int EneHP, Game game) {
+	public EnemyB(int x, int y, int damage, int eneHP, Game game) {
 		super(x, y, game);
 	}
 	
