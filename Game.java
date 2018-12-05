@@ -43,9 +43,9 @@ public class Game extends Canvas implements Runnable{
 		h = new Handler();
 		hud = new HUD();
 		p = new Player(200, 200, this, h);
-		h.addEnemy(new BasicEnemy(300, 300, this)); 
-		h.addEnemy(new FastEnemy(200, 100, this));
-		h.addEnemy(new TankEnemy(300, 100, this));
+		h.addEnemy(new BasicEnemy(300, 300, 10, 1, this)); 
+		h.addEnemy(new FastEnemy(200, 100, 5, 1, this));
+		h.addEnemy(new TankEnemy(300, 100, 30, 3, this));
 	}
 	
 	
