@@ -9,10 +9,6 @@ public abstract class EnemyB extends GameObject{
 		super(x, y, game);
 	}
 	
-	public EnemyB(int x, int y, int eneHP, Game game) {
-		super(x, y, game);
-	}
-	
 	public int getDamage() {
 		return damage;
 	}
