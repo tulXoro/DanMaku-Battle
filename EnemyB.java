@@ -7,6 +7,8 @@ public abstract class EnemyB extends GameObject{
 	
 	public EnemyB(int x, int y, int damage, int eneHP, Game game) {
 		super(x, y, game);
+		this.damage = damage;
+		this.eneHP = eneHP;
 	}
 	
 	public int getDamage() {
