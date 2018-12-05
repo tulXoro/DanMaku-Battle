@@ -1,8 +1,8 @@
 package game;
 
 public abstract class EnemyB extends GameObject{
-	protected int damage = 1;
-	protected int eneHP = 1;
+	protected int damage;
+	protected int eneHP;
 	protected EnemyID id;
 	
 	public EnemyB(int x, int y, int damage, int eneHP, Game game) {
