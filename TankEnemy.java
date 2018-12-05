@@ -14,6 +14,7 @@ public class TankEnemy extends EnemyB{
 		
 		sprite = ss.grabImage(4, 1, 32, 32);
 		id = EnemyID.TankEnemy;
+		brittle = false;
 	}
 
 
