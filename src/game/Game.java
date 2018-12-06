@@ -47,7 +47,7 @@ public class Game extends Canvas implements Runnable{
 		spawner = new Spawner(hud, h, this);
 	}
 	
-	
+	//makes thread when starts
 	public synchronized void start(){
 		if(isRunning) return;
 		thread = new Thread(this);
@@ -55,6 +55,7 @@ public class Game extends Canvas implements Runnable{
 		isRunning = true;
 	}
 	
+	//closes thread when game ends
 	public synchronized void stop(){
 		if(!isRunning) return;
 		try{
@@ -98,6 +99,7 @@ public class Game extends Canvas implements Runnable{
 		stop();
 	}
 	
+	//ticks all objects
 	private void tick(){
 		p.tick();
 		h.tick();
@@ -114,7 +116,7 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		//background
+		//game background
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
@@ -125,7 +127,7 @@ public class Game extends Canvas implements Runnable{
 		g.dispose();
 		bs.show();
 	}
-	
+	//keyboard stuff
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
@@ -147,11 +149,6 @@ public class Game extends Canvas implements Runnable{
 			p.setVelX(-5);
 		}
 		
-		//DEBUG COMMANDS
-		if(key == KeyEvent.VK_H) {
-			HUD.HP -=12;
-		}
-		
 		//DASH
 		if(key == KeyEvent.VK_SPACE) {
 			if(p.getDashCoolDown() <= 0) {
@@ -163,6 +160,11 @@ public class Game extends Canvas implements Runnable{
 		
 		//CLOSE
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
+		
+		//DEBUG COMMANDS
+		if(key == KeyEvent.VK_H) {
+			HUD.HP -=12;
+		}
 	}
 	
 	public void keyReleased(KeyEvent e) {
@@ -191,6 +193,7 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
+	//getters
 	public String getTitle() {
 		return title;
 	}
