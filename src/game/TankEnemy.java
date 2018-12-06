@@ -5,33 +5,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class TankEnemy extends GameObject{
-
+public class TankEnemy extends EnemyB{
 	
-	private int damage = 5;
-	private EnemyID id = EnemyID.TankEnemy;
-	
-	public TankEnemy(int x, int y, Game game) {
-		super(x, y, game);
+	public TankEnemy(int x, int y, int damage, int eneHP, Game game) {
+		super(x, y, damage, eneHP, game);
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(4, 1, 32, 32);
-	}
-
-
-	public int getDamage() {
-		return damage;
-	}
-
-	
-	public EnemyID getID() {
-		
-		return id;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
+		id = EnemyID.TankEnemy;
+		brittle = false;
 	}
 
 
@@ -41,6 +24,7 @@ public class TankEnemy extends GameObject{
 		
 		x = Game.clamp(x, -6, Game.WIDTH - 31);
 		y = Game.clamp(y, -5, Game.HEIGHT - 53);
+		
 	}
 
 

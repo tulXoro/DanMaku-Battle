@@ -43,17 +43,11 @@ public class Game extends Canvas implements Runnable{
 		h = new Handler();
 		hud = new HUD();
 		p = new Player(200, 200, this, h);
-		h.addEnemy(new BasicEnemy(300, 300, this)); 
-		h.addEnemy(new FastEnemy(200, 100, this));
-		h.addEnemy(new TankEnemy(300, 100, this));
+		h.addEnemy(new BasicEnemy(300, 300, 10, 1, this)); 
+		h.addEnemy(new FastEnemy(200, 100, 5, 1, this));
+		h.addEnemy(new TankEnemy(300, 100, 30, 3, this));
 	}
 	
-	
-	public Game(){
-		
-		new Window(WIDTH,HEIGHT,title,this);
-		
-	}
 	
 	public synchronized void start(){
 		if(isRunning) return;
@@ -160,11 +154,11 @@ public class Game extends Canvas implements Runnable{
 		
 		//DASH
 		if(key == KeyEvent.VK_SPACE) {
-			p.setDashing(true);
-			if(p.getVelX() == -5) p.setX(p.getX()-50);
-			if(p.getVelX() == 5) p.setX(p.getX()+50);
-			if(p.getVelY() == -5) p.setY(p.getY()-50);
-			if(p.getVelY() == 5) p.setY(p.getY()+50);
+			if(p.getDashCoolDown() <= 0) {
+				p.setDashing(true);
+				p.setDashBoost(4);
+				p.setDashCoolDown(50);
+			}
 		}
 		
 		//CLOSE
@@ -197,21 +191,23 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public BufferedImage getSpriteSheet() {
+		return spriteSheet;
+	}
+
 	public static int clamp(int var, int min, int max) {
 		if(var >= max) return max;
 		else if(var <= min) return min;
 		return var;
 	}
 
-	public String getTitle() {
-		return title;
+	public Game(){
+		new Window(WIDTH,HEIGHT,title,this);
 	}
-
-
-	public BufferedImage getSpriteSheet() {
-		return spriteSheet;
-	}
-
 
 	public static void main(String[] args) {
 		new Game();

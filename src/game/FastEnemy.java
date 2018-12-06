@@ -5,34 +5,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class FastEnemy extends GameObject{
+public class FastEnemy extends EnemyB{
 	
-	private int damage = 5;
-	private EnemyID id = EnemyID.FastEnemy;
-	
-	public FastEnemy(int x, int y, Game game) {
-		super(x, y, game);
+	public FastEnemy(int x, int y, int damage, int eneHP, Game game) {
+		super(x, y, damage, eneHP, game);
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(3, 1, 32, 32);
+		id = EnemyID.FastEnemy;
 	}
-
-
-	public int getDamage() {
-		return damage;
-	}
-
-	
-	public EnemyID getID() {
-		
-		return id;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
 
 	public void tick() {
 		x += velX;
@@ -40,6 +22,7 @@ public class FastEnemy extends GameObject{
 		
 		x = Game.clamp(x, -6, Game.WIDTH - 31);
 		y = Game.clamp(y, -5, Game.HEIGHT - 53);
+
 	}
 
 
@@ -52,8 +35,6 @@ public class FastEnemy extends GameObject{
 		g2d.draw(getHitBox());
 	}
 
-
-	@Override
 	public Rectangle getHitBox() {
 		return new Rectangle (x+5, y+5, 20, 20);
 	}

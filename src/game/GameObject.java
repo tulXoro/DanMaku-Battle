@@ -17,7 +17,6 @@ public abstract class GameObject {
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	public abstract Rectangle getHitBox();
-	public abstract EnemyID getID();
 	
 	public int getX() {
 		return x;
@@ -51,7 +50,4 @@ public abstract class GameObject {
 		this.velY = velY;
 	}
 	
-	public int getDamage() {
-		return 0;
-	}
 }

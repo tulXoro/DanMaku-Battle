@@ -17,7 +17,6 @@ public class HUD {
 		greenValue = HP*2;
 		
 		if(timer > 0) timer-=2;
-		
 	}
 	
 	public void render(Graphics g) {
