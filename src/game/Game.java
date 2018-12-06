@@ -26,6 +26,7 @@ public class Game extends Canvas implements Runnable{
 	private Player p;
 	private Handler h;
 	private HUD hud;
+	private Spawner spawner;
 	
 	//FOR MOVEMENT
 	private boolean overWriteX = false, overWriteY = false;
@@ -43,9 +44,7 @@ public class Game extends Canvas implements Runnable{
 		h = new Handler();
 		hud = new HUD();
 		p = new Player(200, 200, this, h);
-		h.addEnemy(new BasicEnemy(300, 300, 10, 1, this)); 
-		h.addEnemy(new FastEnemy(200, 100, 5, 1, this));
-		h.addEnemy(new TankEnemy(300, 100, 30, 3, this));
+		spawner = new Spawner(hud, h, this);
 	}
 	
 	
@@ -103,6 +102,7 @@ public class Game extends Canvas implements Runnable{
 		p.tick();
 		h.tick();
 		hud.tick();
+		spawner.tick();
 	}
 	
 	private void render(){

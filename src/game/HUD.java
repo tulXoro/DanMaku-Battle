@@ -34,4 +34,8 @@ public class HUD {
 	public int getHP() {
 		return HP;
 	}
+	
+	public int getTimer() {
+		return timer;
+	}
 }

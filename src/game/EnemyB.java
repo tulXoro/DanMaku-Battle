@@ -39,5 +39,4 @@ public abstract class EnemyB extends GameObject{
 	public void setBrittle(boolean brittle){
 		this.brittle = brittle;
 	}
-
 }
