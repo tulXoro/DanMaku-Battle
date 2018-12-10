@@ -6,24 +6,30 @@ import java.awt.Rectangle;
 
 public class BasicEnemy extends EnemyB{
 
-	
-	public BasicEnemy(int x, int y, int damage, int eneHP, Game game) {
+	private Player p;
+	public BasicEnemy(int x, int y, int damage, int eneHP, Player p, Game game) {
 		super(x, y, damage, eneHP, game);
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(2, 1, 32, 32);
+		this.p = p;
 		
-		damage = 10;
 		id = EnemyID.BasicEnemy;
 	}
 
 	public void tick() {
 		x += velX;
 		y += velY;
+		if(p.getX()>x) velX = 5;
+		else velX=-5;
 		
-		x = Game.clamp(x, -6, Game.WIDTH - 31);
-		y = Game.clamp(y, -5, Game.HEIGHT - 53);
+		if(p.getY()>y) velY = 5;
+		else velY=-5;
+		
+		//x = Game.clamp(x, -6, Game.WIDTH - 31);
+		//y = Game.clamp(y, -5, Game.HEIGHT - 53);
+		
 
 	}
 

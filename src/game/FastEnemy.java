@@ -12,6 +12,7 @@ public class FastEnemy extends EnemyB{
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
+		velX = 10;
 		sprite = ss.grabImage(3, 1, 32, 32);
 		id = EnemyID.FastEnemy;
 	}
@@ -20,8 +21,8 @@ public class FastEnemy extends EnemyB{
 		x += velX;
 		y += velY;
 		
-		x = Game.clamp(x, -6, Game.WIDTH - 31);
-		y = Game.clamp(y, -5, Game.HEIGHT - 53);
+		//x = Game.clamp(x, 0, Game.WIDTH);
+		//y = Game.clamp(y, 0, Game.HEIGHT);
 
 	}
 

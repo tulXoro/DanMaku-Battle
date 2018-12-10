@@ -43,6 +43,7 @@ public class Player extends GameObject{
 						HUD.HP -= temp.getDamage();
 						if(temp.isBrittle()) temp.setEneHP(temp.getEneHP()-1);
 						if(temp.getEneHP() <= 0) h.list.remove(i);
+						System.out.println("!");
 					}
 				};
 			}else if(isDashing) {
@@ -52,6 +53,7 @@ public class Player extends GameObject{
 						if(temp.isBrittle()) temp.setEneHP(temp.getEneHP()-2);
 						else temp.setEneHP(temp.getEneHP()-1);
 						if(temp.getEneHP() <= 0) h.list.remove(i);
+						System.out.println("Check!");
 					}
 				};
 			dashCntDown-=1;

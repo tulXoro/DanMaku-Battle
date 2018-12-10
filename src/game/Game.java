@@ -44,10 +44,10 @@ public class Game extends Canvas implements Runnable{
 		h = new Handler();
 		hud = new HUD();
 		p = new Player(200, 200, this, h);
-		spawner = new Spawner(hud, h, this);
+		spawner = new Spawner(h, p, this);
 	}
 	
-	//makes thread when starts
+	
 	public synchronized void start(){
 		if(isRunning) return;
 		thread = new Thread(this);
@@ -55,7 +55,6 @@ public class Game extends Canvas implements Runnable{
 		isRunning = true;
 	}
 	
-	//closes thread when game ends
 	public synchronized void stop(){
 		if(!isRunning) return;
 		try{
@@ -93,13 +92,13 @@ public class Game extends Canvas implements Runnable{
 	    	if(System.currentTimeMillis() - timer > 1000){
 	    		timer += 1000;
 	    		System.out.println("FPS: " + frames);
+	    		System.out.println(h.list.size());
 	    		frames = 0;
 		    }
 	    }
 		stop();
 	}
 	
-	//ticks all objects
 	private void tick(){
 		p.tick();
 		h.tick();
@@ -116,7 +115,7 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		//game background
+		//background
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
@@ -127,7 +126,7 @@ public class Game extends Canvas implements Runnable{
 		g.dispose();
 		bs.show();
 	}
-	//keyboard stuff
+	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
@@ -149,6 +148,11 @@ public class Game extends Canvas implements Runnable{
 			p.setVelX(-5);
 		}
 		
+		//DEBUG COMMANDS
+		if(key == KeyEvent.VK_H) {
+			HUD.HP -=12;
+		}
+		
 		//DASH
 		if(key == KeyEvent.VK_SPACE) {
 			if(p.getDashCoolDown() <= 0) {
@@ -160,11 +164,6 @@ public class Game extends Canvas implements Runnable{
 		
 		//CLOSE
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
-		
-		//DEBUG COMMANDS
-		if(key == KeyEvent.VK_H) {
-			HUD.HP -=12;
-		}
 	}
 	
 	public void keyReleased(KeyEvent e) {
@@ -193,7 +192,6 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
-	//getters
 	public String getTitle() {
 		return title;
 	}

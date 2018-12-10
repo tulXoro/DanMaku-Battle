@@ -3,22 +3,31 @@ package game;
 import java.util.Random;
 
 public class Spawner {
-	private HUD hud;
 	private Handler h;
+	private Player p;
 	private Random r = new Random();
 	private Game game;
 	private int cnt;
-	public Spawner(HUD hud, Handler h,Game game) {
+	public Spawner(Handler h, Player p, Game game) {
 		
-		this.hud = hud;
 		this.h = h;
+		this.p = p;
 		this.game = game;
 		cnt = 500;
 	}
 	
 	public void tick(){
-		if(cnt%100==0) h.addEnemy(new BasicEnemy(r.nextInt(Game.WIDTH),r.nextInt(Game.HEIGHT), 1, 1, game));
-		if(cnt<=0) cnt=500;
-		cnt--;
+		if(cnt%100==0) h.addEnemy(new BasicEnemy(Game.WIDTH-26,r.nextInt(Game.HEIGHT), 10, 1, p, game));
+		if(cnt%5 == 0) h.addEnemy(new FastEnemy(r.nextInt(10),r.nextInt(Game.HEIGHT-24), 1, 1, game));
+		
+		//when counter reaches 0, counter resets
+		if(cnt<=0) cnt=1000;
+		cnt--; //constantly remove counter
+		
+		for(int i = 0; i<h.list.size(); i++) {
+			EnemyB temp = h.list.get(i);
+			if(temp.getX() <= 0 || temp.getX() >= Game.WIDTH) h.list.remove(i);
+			if(temp.getY() <= 0 || temp.getY() >= Game.HEIGHT) h.list.remove(i);
+		};
 	}
 }
