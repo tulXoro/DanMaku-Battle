@@ -8,6 +8,7 @@ public class Spawner {
 	private Random r = new Random();
 	private Game game;
 	private int cnt;
+	
 	public Spawner(Handler h, Player p, Game game) {
 		//variable setting
 		this.h = h;
@@ -25,11 +26,11 @@ public class Spawner {
 		if(cnt<=0) cnt=1000;
 		cnt--; //constantly remove counter
 		
-		
+		//removes enemy when outside boundaries
 		for(int i = 0; i<h.list.size(); i++) {
 			EnemyB temp = h.list.get(i);
 			if(temp.getX() <= 0 || temp.getX() >= Game.WIDTH) h.list.remove(i);
-			if(temp.getY() <= 0 || temp.getY() >= Game.HEIGHT) h.list.remove(i);
+			if(temp.getY() <= 0 || temp.getY() >= Game.HEIGHT) h.list.remove(i); 
 		};
 	}
 }
