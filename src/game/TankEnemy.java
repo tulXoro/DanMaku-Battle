@@ -22,6 +22,13 @@ public class TankEnemy extends EnemyB{
 		x += velX;
 		y += velY;
 		
+		//super complex AI which tracks the player and changes the enemy's velocity to move towards player
+		if(p.getX()>x) velX = 1;
+		else velX=-1;
+		
+		if(p.getY()>y) velY = 1;
+		else velY=-1;
+		
 		//x = Game.clamp(x, -6, Game.WIDTH - 31);
 		//y = Game.clamp(y, -5, Game.HEIGHT - 53);
 		
