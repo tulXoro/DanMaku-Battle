@@ -14,13 +14,15 @@ public class BasicEnemy extends EnemyB{
 		
 		sprite = ss.grabImage(2, 1, 32, 32);
 		this.p = p;
-		
+		//setsID
 		id = EnemyID.BasicEnemy;
 	}
 
 	public void tick() {
 		x += velX;
 		y += velY;
+		
+		//super complex AI which tracks the player and changes the enemy's velocity to move towards player
 		if(p.getX()>x) velX = 5;
 		else velX=-5;
 		
