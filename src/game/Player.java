@@ -62,7 +62,6 @@ public class Player extends GameObject{
 				dashBoost = 1;
 			}
 		}
-		
 	}
 	
 	public void render(Graphics g) {
@@ -88,7 +87,7 @@ public class Player extends GameObject{
 	
 	public void setDashing(boolean isDashing) {
 		this.isDashing = isDashing;
-		dashCntDown = 10;
+		dashCntDown = 15;
 	}
 	
 	public int getDashBoost() {

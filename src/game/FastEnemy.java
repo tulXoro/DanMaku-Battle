@@ -12,7 +12,7 @@ public class FastEnemy extends EnemyB{
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
-		velX = 20;
+		velX = 15;
 		sprite = ss.grabImage(3, 1, 32, 32);
 		id = EnemyID.FastEnemy;
 	}

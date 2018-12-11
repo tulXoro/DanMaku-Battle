@@ -7,12 +7,14 @@ import java.awt.Rectangle;
 
 public class TankEnemy extends EnemyB{
 	
-	public TankEnemy(int x, int y, int damage, int eneHP, Game game) {
+	private Player p;
+	public TankEnemy(int x, int y, int damage, int eneHP, Player p, Game game) {
 		super(x, y, damage, eneHP, game);
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(4, 1, 32, 32);
+		this.p = p;
 		id = EnemyID.TankEnemy;
 		brittle = false;
 	}
