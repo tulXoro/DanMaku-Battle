@@ -8,6 +8,7 @@ public class HUD {
 	
 	private int greenValue = 255;
 	private int timer = 6100;
+	private int extra = 0;
 	
 	public void tick() {
 		HP = Game.clamp(HP, 0, 100);
@@ -17,6 +18,7 @@ public class HUD {
 		greenValue = HP*2;
 		
 		if(timer > 0) timer-=2;
+		else extra++;
 	}
 	
 	public void render(Graphics g) {
@@ -29,6 +31,7 @@ public class HUD {
 		
 		//g.setColor(Color.orange);
 		g.drawString("Time Left: " + timer/100, 15, 45);
+		if(extra>=1) g.drawString("ExtraScore: " + extra/100, 15, 65);
 	}
 	
 	public int getHP() {

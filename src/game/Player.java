@@ -62,7 +62,6 @@ public class Player extends GameObject{
 				dashBoost = 1;
 			}
 		}
-		
 	}
 	
 	public void render(Graphics g) {
@@ -71,7 +70,7 @@ public class Player extends GameObject{
 		g.setColor(Color.green);
 		g.drawImage(sprite, x, y, null);
 
-		g2d.draw(getHitBox());
+		//g2d.draw(getHitBox());
 	}
 
 	public Rectangle getHitBox() {
@@ -88,7 +87,7 @@ public class Player extends GameObject{
 	
 	public void setDashing(boolean isDashing) {
 		this.isDashing = isDashing;
-		dashCntDown = 10;
+		dashCntDown = 15;
 	}
 	
 	public int getDashBoost() {

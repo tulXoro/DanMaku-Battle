@@ -104,6 +104,7 @@ public class Game extends Canvas implements Runnable{
 		h.tick();
 		hud.tick();
 		spawner.tick();
+		if(hud.getHP()<=0) System.exit(0);
 	}
 	
 	private void render(){
@@ -158,7 +159,7 @@ public class Game extends Canvas implements Runnable{
 			if(p.getDashCoolDown() <= 0) {
 				p.setDashing(true);
 				p.setDashBoost(4);
-				p.setDashCoolDown(50);
+				p.setDashCoolDown(30);
 			}
 		}
 		

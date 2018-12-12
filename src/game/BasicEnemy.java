@@ -40,7 +40,7 @@ public class BasicEnemy extends EnemyB{
 		
 		g.drawImage(sprite, x, y, 45, 45,null);
 		
-		g2d.draw(getHitBox());
+		//g2d.draw(getHitBox());
 	}
 
 	public Rectangle getHitBox() {

@@ -12,7 +12,7 @@ public class FastEnemy extends EnemyB{
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
-		velX = 20;
+		velX = 15;
 		sprite = ss.grabImage(3, 1, 32, 32);
 		id = EnemyID.FastEnemy;
 	}
@@ -28,12 +28,11 @@ public class FastEnemy extends EnemyB{
 
 
 	public void render(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
 		
 		g.drawImage(sprite, x, y, 32, 32,null);
 		
 		g.setColor(Color.green);
-		g2d.draw(getHitBox());
+		//g2d.draw(getHitBox());
 	}
 
 	public Rectangle getHitBox() {
