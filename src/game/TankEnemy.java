@@ -2,7 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+//import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class TankEnemy extends EnemyB{
@@ -14,7 +14,7 @@ public class TankEnemy extends EnemyB{
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(4, 1, 32, 32);
-		this.p = p;
+		this.p = p; //adds player for AI tracking
 		id = EnemyID.TankEnemy;
 		brittle = false;
 	}
@@ -38,7 +38,7 @@ public class TankEnemy extends EnemyB{
 
 
 	public void render(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+		//Graphics2D g2d = (Graphics2D) g;
 		
 		g.drawImage(sprite, x, y, 64, 64,null);
 		

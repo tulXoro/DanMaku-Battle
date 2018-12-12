@@ -149,17 +149,12 @@ public class Game extends Canvas implements Runnable{
 			p.setVelX(-5);
 		}
 		
-		//DEBUG COMMANDS
-		if(key == KeyEvent.VK_H) {
-			HUD.HP -=12;
-		}
-		
 		//DASH
 		if(key == KeyEvent.VK_SPACE) {
 			if(p.getDashCoolDown() <= 0) {
-				p.setDashing(true);
-				p.setDashBoost(4);
-				p.setDashCoolDown(30);
+				p.setDashing(true); //sets dash effect to true
+				p.setDashBoost(4); //dash boost modifier
+				p.setDashCoolDown(30); //dash cooldown so player can't spam dash
 			}
 		}
 		
@@ -170,7 +165,7 @@ public class Game extends Canvas implements Runnable{
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		//MOVEMENT
+		//MOVEMENT... when key is pressed, player velocity modifies enemy
 		if(key == KeyEvent.VK_W) {
 			if(overWriteY) p.setVelY(5);
 			else p.setVelY(0);

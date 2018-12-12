@@ -1,7 +1,7 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+//import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class BasicEnemy extends EnemyB{
@@ -13,7 +13,7 @@ public class BasicEnemy extends EnemyB{
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		sprite = ss.grabImage(2, 1, 32, 32);
-		this.p = p;
+		this.p = p;//adds player to set tracking
 		//setsID
 		id = EnemyID.BasicEnemy;
 	}
@@ -36,7 +36,7 @@ public class BasicEnemy extends EnemyB{
 	}
 
 	public void render(Graphics g) {		
-		Graphics2D g2d = (Graphics2D) g;
+		//Graphics2D g2d = (Graphics2D) g;
 		
 		g.drawImage(sprite, x, y, 45, 45,null);
 		
