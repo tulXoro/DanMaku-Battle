@@ -153,7 +153,7 @@ public class Game extends Canvas implements Runnable{
 		if(key == KeyEvent.VK_SPACE) {
 			if(p.getDashCoolDown() <= 0) {
 				p.setDashing(true); //sets dash effect to true
-				p.setDashBoost(4); //dash boost modifier
+				p.setDashBoost(3); //dash boost modifier
 				p.setDashCoolDown(30); //dash cooldown so player can't spam dash
 			}
 		}
