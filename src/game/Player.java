@@ -11,6 +11,7 @@ public class Player extends GameObject{
 	private int dashCntDown;
 	private int dashBoost = 1;
 	private int dashCoolDown = 0;
+	private int dImmunity = 0;
 
 	public Player(int x, int y, Game game, Handler h) {
 		super(x, y, game);
@@ -36,7 +37,7 @@ public class Player extends GameObject{
 	
 	//Detects collision
 	private void collision() {
-			if(!isDashing) { //while not dashing, take damage and damage enemy if not brittle
+			if(dImmunity <= 0) { //while not dashing, take damage and damage enemy if not brittle
 				for(int i = 0; i<h.list.size(); i++) {
 					EnemyB temp = h.list.get(i);
 					if(getHitBox().intersects(temp.getHitBox())) {
@@ -46,7 +47,7 @@ public class Player extends GameObject{
 						System.out.println("!");
 					}
 				};
-			}else if(isDashing) { //while dashing, damage everything(if not brittle, take less damage)
+			}else if(dImmunity > 0) { //while dashing, damage everything(if not brittle, take less damage)
 				for(int i = 0; i<h.list.size(); i++) {
 					EnemyB temp = h.list.get(i);
 					if(getHitBox().intersects(temp.getHitBox())) {
