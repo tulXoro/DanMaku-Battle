@@ -56,8 +56,7 @@ public class Player extends GameObject{
 						System.out.println("Check!");
 					}
 				};
-			dashCntDown-=1; //count down for dash effect
-			if(dashCntDown <= 0) {
+			if(dashCntDown-- <= 0) {
 				isDashing = false; //sets dash to false when effect
 				dashBoost = 1; //dash boost modifier resets
 			}
