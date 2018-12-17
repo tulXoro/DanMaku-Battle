@@ -14,8 +14,6 @@ public class BasicEnemy extends EnemyB{
 		
 		sprite = ss.grabImage(2, 1, 32, 32);
 		this.p = p;//adds player to set tracking
-		//setsID
-		id = EnemyID.BasicEnemy;
 	}
 
 	public void tick() {
@@ -28,11 +26,6 @@ public class BasicEnemy extends EnemyB{
 		
 		if(p.getY()>y) velY = 5;
 		else velY=-5;
-		
-		//x = Game.clamp(x, -6, Game.WIDTH - 31);
-		//y = Game.clamp(y, -5, Game.HEIGHT - 53);
-		
-
 	}
 
 	public void render(Graphics g) {		

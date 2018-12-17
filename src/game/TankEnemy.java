@@ -15,7 +15,6 @@ public class TankEnemy extends EnemyB{
 		
 		sprite = ss.grabImage(4, 1, 32, 32);
 		this.p = p; //adds player for AI tracking
-		id = EnemyID.TankEnemy;
 		brittle = false;
 	}
 
@@ -30,9 +29,6 @@ public class TankEnemy extends EnemyB{
 		
 		if(p.getY()>y) velY = 1;
 		else velY=-1;
-		
-		//x = Game.clamp(x, -6, Game.WIDTH - 31);
-		//y = Game.clamp(y, -5, Game.HEIGHT - 53);
 		
 	}
 

@@ -18,6 +18,7 @@ public abstract class GameObject {
 	public abstract void render(Graphics g);
 	public abstract Rectangle getHitBox();
 	
+	//setters and getters that are inherited so that I dont need to rewrite them
 	public int getX() {
 		return x;
 	}

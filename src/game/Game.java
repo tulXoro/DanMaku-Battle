@@ -78,7 +78,6 @@ public class Game extends Canvas implements Runnable{
 	    double ns = 1000000000 / amountOfTicks;
 	    double delta = 0;
 	    long timer = System.currentTimeMillis();
-	    int frames = 0;
 	    while(isRunning){
 	    	long now = System.nanoTime();
 	    	delta += (now - lastTime) / ns;
@@ -88,25 +87,23 @@ public class Game extends Canvas implements Runnable{
 	    		  delta--;
 	    	}
 	    	render();
-	    	frames++;
 	    	if(System.currentTimeMillis() - timer > 1000){
 	    		timer += 1000;
-	    		System.out.println("FPS: " + frames);
-	    		System.out.println(h.list.size());
-	    		frames = 0;
 		    }
 	    }
 		stop();
 	}
 	
+	//basically a timer
 	private void tick(){
 		p.tick();
 		h.tick();
 		hud.tick();
 		spawner.tick();
-		if(hud.getHP()<=0) System.exit(0);
+		if(HUD.HP<=0) System.exit(0);
 	}
 	
+	//renders GameObjects
 	private void render(){
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
@@ -132,19 +129,19 @@ public class Game extends Canvas implements Runnable{
 		int key = e.getKeyCode();
 		
 		//MOVEMENT
-		if(key == KeyEvent.VK_W) {
+		if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
 			if(p.getVelY() == 5) overWriteY = true;
 			p.setVelY(-5);
 		}
-		if(key == KeyEvent.VK_S) {
+		if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
 			if(p.getVelY() == -5) overWriteY = true;
 			p.setVelY(5);
 		}
-		if(key == KeyEvent.VK_D) {
+		if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 			if(p.getVelX() == -5) overWriteX = true;
 			p.setVelX(5);
 		}
-		if(key == KeyEvent.VK_A) {
+		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
 			if(p.getVelX() == 5) overWriteX = true;
 			p.setVelX(-5);
 		}
@@ -152,9 +149,7 @@ public class Game extends Canvas implements Runnable{
 		//DASH
 		if(key == KeyEvent.VK_SPACE) {
 			if(p.getDashCoolDown() <= 0) {
-				p.setDashing(true); //sets dash effect to true
-				p.setDashBoost(3); //dash boost modifier
-				p.setDashCoolDown(30); //dash cooldown so player can't spam dash
+				p.setDashingTrue(); //sets dash effect to true
 			}
 		}
 		
@@ -166,22 +161,22 @@ public class Game extends Canvas implements Runnable{
 		int key = e.getKeyCode();
 		
 		//MOVEMENT... when key is pressed, player velocity modifies enemy
-		if(key == KeyEvent.VK_W) {
+		if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
 			if(overWriteY) p.setVelY(5);
 			else p.setVelY(0);
 			overWriteY = false;
 		}
-		if(key == KeyEvent.VK_S) {
+		if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
 			if(overWriteY) p.setVelY(-5);
 			else p.setVelY(0);
 			overWriteY = false;
 		}
-		if(key == KeyEvent.VK_D) {
+		if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 			if(overWriteX) p.setVelX(-5);
 			else p.setVelX(0);
 			overWriteX = false;
 		}
-		if(key == KeyEvent.VK_A) {
+		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
 			if(overWriteX) p.setVelX(5);
 			else p.setVelX(0);
 			overWriteX = false;
@@ -196,7 +191,7 @@ public class Game extends Canvas implements Runnable{
 		return spriteSheet;
 	}
 
-	public static int clamp(int var, int min, int max) {
+	public static int clamp(int var, int min, int max) { //sets so value can not be greater than max and less than min
 		if(var >= max) return max;
 		else if(var <= min) return min;
 		return var;

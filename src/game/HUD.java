@@ -7,7 +7,7 @@ public class HUD {
 	
 	static int HP = 100;
 	
-	private int greenValue = 255;
+	private int greenValue = 255;//color val of green
 	private int timer = 6100;
 	private int extra = 0;
 	

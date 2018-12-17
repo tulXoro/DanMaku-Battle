@@ -32,7 +32,10 @@ public class Player extends GameObject{
 		
 		collision(); //calls collision
 		
-		if(dashCoolDown-- > 0); //constantly subtracts dashcooldown
+		//constantly subtracts stuff
+		if(dashCntDown-- > 0);
+		if(dashCoolDown-- > 0);
+		if(dImmunity-- > 0); 
 	}
 	
 	//Detects collision
@@ -44,7 +47,6 @@ public class Player extends GameObject{
 						HUD.HP -= temp.getDamage();
 						if(temp.isBrittle()) temp.setEneHP(temp.getEneHP()-1);
 						if(temp.getEneHP() <= 0) h.list.remove(temp);
-						System.out.println("!");
 					}
 				};
 			}else if(dImmunity > 0) { //while dashing, damage everything(if not brittle, take less damage)
@@ -54,10 +56,9 @@ public class Player extends GameObject{
 						if(temp.isBrittle()) temp.setEneHP(temp.getEneHP()-2);
 						else temp.setEneHP(temp.getEneHP()-1);
 						if(temp.getEneHP() <= 0) h.list.remove(temp);
-						System.out.println("Check!");
 					}
 				};
-			if(dashCntDown-- <= 0) {
+			if(dashCntDown <= 0) {
 				isDashing = false; //sets dash to false when effect
 				dashBoost = 1; //dash boost modifier resets
 			}
@@ -75,14 +76,18 @@ public class Player extends GameObject{
 	public Rectangle getHitBox() {
 		return new Rectangle (x+5, y+5, 20, 20); //rect for hitbox collision. implemented in all enemies
 	}
+	
 	//These should be self explanatory
 	public boolean isDashing() {
 		return isDashing;
 	}
 	
-	public void setDashing(boolean isDashing) {
-		this.isDashing = isDashing;
-		dashCntDown = 15; //sets dashcountdown to activate dashing
+	public void setDashingTrue() {
+		isDashing = true;
+		dImmunity = 25;//sets immunity which allows player to not take damage, even for a short time after dash
+		dashCntDown = 10; //sets dashcountdown to activate dashing
+		dashCoolDown = 30;//sets cooldown so player cant spam dash
+		dashBoost = 3;//multiplier to increase speed 
 	}
 	
 	public void setDashBoost(int dashBoost) {

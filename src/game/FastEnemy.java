@@ -13,16 +13,12 @@ public class FastEnemy extends EnemyB{
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
 		
 		velX = 15;
+		
 		sprite = ss.grabImage(3, 1, 32, 32);
-		id = EnemyID.FastEnemy;
 	}
 
 	public void tick() {
 		x += velX;
-		
-		//x = Game.clamp(x, 0, Game.WIDTH);
-		//y = Game.clamp(y, 0, Game.HEIGHT);
-
 	}
 
 
